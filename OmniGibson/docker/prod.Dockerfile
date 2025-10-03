@@ -19,7 +19,7 @@ ENV OMNIGIBSON_DATA_PATH /data
 # Install Mamba (light conda alternative)
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C / bin/micromamba
 ENV MAMBA_ROOT_PREFIX /micromamba
-RUN micromamba create -n omnigibson -c conda-forge python=3.10
+RUN micromamba create -n omnigibson -c conda-forge python=3.12
 RUN micromamba shell init --shell=bash
 
 # Install torch
