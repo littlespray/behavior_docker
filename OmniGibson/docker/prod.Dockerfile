@@ -62,6 +62,9 @@ WORKDIR /omnigibson-src
 # Set the shell
 SHELL ["micromamba", "run", "-n", "omnigibson", "/bin/bash", "--login", "-c"]
 
+# Install bddl from GitHub
+RUN pip install git+https://github.com/StanfordVL/BEHAVIOR-1K.git@v3.7.1#subdirectory=bddl
+
 # Optionally install OmniGibson (e.g. unless the DEV_MODE flag is set) or
 # remove the OmniGibson source code if we are in dev mode and change the workdir
 ARG DEV_MODE
