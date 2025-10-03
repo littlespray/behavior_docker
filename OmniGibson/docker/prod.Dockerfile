@@ -19,7 +19,7 @@ ENV OMNIGIBSON_DATA_PATH /data
 # Install Mamba (light conda alternative)
 RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C / bin/micromamba
 ENV MAMBA_ROOT_PREFIX /micromamba
-RUN micromamba create -n omnigibson -c conda-forge python=3.12
+RUN micromamba create -n omnigibson -c conda-forge python=3.10
 RUN micromamba shell init --shell=bash
 
 # Install torch
@@ -76,7 +76,7 @@ ENV DEV_MODE=${DEV_MODE}
 ARG WORKDIR_PATH=/omnigibson-src
 RUN if [ "$DEV_MODE" != "1" ]; then \
       echo "OMNIGIBSON_NO_OMNIVERSE=1 python omnigibson/download_datasets.py" >> /root/.bashrc; \
-      micromamba run -n omnigibson pip install --no-cache-dir -e .[dev,primitives]; \
+      micromamba run -n omnigibson pip install -e .[dev,primitives]; \
     else \
       WORKDIR_PATH=/; \
       cd / && rm -rf /omnigibson-src; \
