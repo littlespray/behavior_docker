@@ -73,7 +73,7 @@ ENV DEV_MODE=${DEV_MODE}
 ARG WORKDIR_PATH=/omnigibson-src
 RUN if [ "$DEV_MODE" != "1" ]; then \
       echo "OMNIGIBSON_NO_OMNIVERSE=1 python omnigibson/download_datasets.py" >> /root/.bashrc; \
-      micromamba run -n omnigibson pip install -e .[dev,primitives]; \
+      micromamba run -n omnigibson pip install --no-cache-dir -e .[dev,primitives]; \
     else \
       WORKDIR_PATH=/; \
       cd / && rm -rf /omnigibson-src; \
