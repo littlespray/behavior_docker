@@ -55,6 +55,11 @@ RUN echo "source /isaac-sim/setup_conda_env.sh" >> $CONDA_ACT_FILE
 
 RUN echo "micromamba activate omnigibson" >> /root/.bashrc
 
+# Install bddl from GitHub
+RUN pip install git+https://github.com/StanfordVL/BEHAVIOR-1K.git@v3.7.1#subdirectory=bddl
+RUN pip install git+https://github.com/cnr-isti-vclab/PyMeshLab.git@v2022.2
+RUN pip install numpy
+
 # Copy over omnigibson source
 ADD . /omnigibson-src
 WORKDIR /omnigibson-src
@@ -62,9 +67,7 @@ WORKDIR /omnigibson-src
 # Set the shell
 SHELL ["micromamba", "run", "-n", "omnigibson", "/bin/bash", "--login", "-c"]
 
-# Install bddl from GitHub
-RUN pip install git+https://github.com/StanfordVL/BEHAVIOR-1K.git@v3.7.1#subdirectory=bddl
-RUN pip install git+https://github.com/cnr-isti-vclab/PyMeshLab.git@v2022.2
+
 
 # Optionally install OmniGibson (e.g. unless the DEV_MODE flag is set) or
 # remove the OmniGibson source code if we are in dev mode and change the workdir
